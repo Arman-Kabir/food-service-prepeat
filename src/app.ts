@@ -1,6 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 var cors = require('cors');
 
+import foodRouter from './app/routes/food.route';
+
 const app:Application = express()
 app.use(cors())
 const port = 3000;
@@ -10,9 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/', (req:Request, res:Response,next:NextFunction) => {
+app.get('/',async (req:Request, res:Response,next:NextFunction) => {
   res.send('Hello World!')
-})
+});
+
+// routes
+app.use('/api/v1/food',foodRouter);
 
 
 
