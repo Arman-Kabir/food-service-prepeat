@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/',async (req:Request, res:Response,next:NextFunction) => {
-  res.send('Hello World!')
+  res.send('success')
 });
 
 // routes
