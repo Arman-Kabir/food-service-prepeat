@@ -1,9 +1,4 @@
 // import ApiError from "../../../errors/ApiError";
-import { SortOrder } from "mongoose";
-import { IPaginationOptions } from "../../../interfaces/pagination";
-import { ICows, IFilters } from "./cows.interface";
-import { Cows } from "./cows.model";
-import ApiError from "../../../errors/ApiError";
 import { IFood } from "../interface/food.interface";
 import { Food } from "../models/food.model";
 
@@ -29,12 +24,12 @@ export const getSingleFood = (payload: string) => {
 };
 export const updateFood = async (id: string, payload: any) => {
   // console.log(userData);
-  const cowData = await Food.findOne({ _id: id });
+  const result = await Food.findOne({ _id: id });
 
-  return cowData;
+  return result;
 };
 
-export const deleteFood = async (id: string, userData: any) => {
+export const deleteFood = async (id: string) => {
     const data = await Food.findOneAndDelete(
       { _id: id },
       {
@@ -43,3 +38,11 @@ export const deleteFood = async (id: string, userData: any) => {
     );
     return data;
 };
+
+export const foodService={
+    getFoods,
+    getSingleFood,
+    createFood,
+    updateFood,
+    deleteFood
+}

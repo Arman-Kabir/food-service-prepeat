@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { foodService } from "../services/food.services";
 
 
 export const getFoods = async (
@@ -8,7 +9,7 @@ export const getFoods = async (
 ) => {
   try {
     // const result = await getCowsService(filters, paginationOptions);
-    const result = await foodService();
+    const result = await foodService.getFoods();
 
     res.status(200).json({
       success: true,
@@ -28,7 +29,7 @@ export const createFood = async (
 ) => {
   try {
     const foodData = req.body;
-    const result = await foodService(foodData);
+    const result = await foodService.createFood(foodData);
     res.status(200).json({
       success: true,
       statusCode: 200,
@@ -47,7 +48,7 @@ export const getSingleFood = async (
 ) => {
   try {
     const id = req.params.id;
-    const result = await foodService(id);
+    const result = await foodService.getSingleFood(id);
     res.status(200).json({
       success: true,
       statusCode: 200,
@@ -59,7 +60,7 @@ export const getSingleFood = async (
   }
 };
 
-export const updateCow = async (
+export const updateFood = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -68,7 +69,7 @@ export const updateCow = async (
     const id = req.params.id;
     const updatedData = req.body;
     // console.log(id, updatedData);    
-    const result = await foodService(id, updatedData);
+    const result = await foodService.updateFood(id, updatedData);
     res.status(200).json({
       success: true,
       statusCode: 200,
@@ -87,7 +88,7 @@ export const deleteFood = async (
   try {
     const id = req.params.id;
 
-    const result = await foodService(id);
+    const result = await foodService.deleteFood(id);
     res.status(200).json({
       success: true,
       statusCode: 200,
@@ -98,3 +99,11 @@ export const deleteFood = async (
     next(err);
   }
 };
+
+export const foodController={
+    getFoods,
+    getSingleFood,
+    createFood,
+    updateFood,
+    deleteFood
+}
