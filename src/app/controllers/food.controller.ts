@@ -8,7 +8,6 @@ export const getFoods = async (
   next: NextFunction
 ) => {
   try {
-    // const result = await getCowsService(filters, paginationOptions);
     const result = await foodService.getFoods();
 
     res.status(200).json({

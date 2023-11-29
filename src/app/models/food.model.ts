@@ -1,7 +1,5 @@
 import { Schema, model } from "mongoose";
 import { IFood } from "../interface/food.interface";
-// import { ICows } from "./cows.interface";
-// import { Breed, Category, Label, Location } from "./cows.constant";
 
 const FoodSchema = new Schema<IFood>(
     {
